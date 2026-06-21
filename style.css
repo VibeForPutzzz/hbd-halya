@@ -661,21 +661,19 @@ h1.hbd-title,
 
 
 /* --- 2. JALUR PANGGIL FOTO STORY CINEMATIC (DENGAN FOLDER IMAGES) --- */
-#pic1 { background-image: url('images/foto1.png'); }
-#pic2 { background-image: url('images/foto2.png'); }
-#pic3 { background-image: url('images/foto3.png'); }
-
-/* --- 3. JALUR PANGGIL FOTO PHOTO DUMP GRID (DENGAN FOLDER IMAGES) --- */
-#pic4 { background-image: url('images/foto4.png'); }
-#pic5 { background-image: url('images/foto5.png'); }
-#pic6 { background-image: url('images/foto6.png'); }
-#pic7 { background-image: url('images/foto7.png'); background-position: 50% 20%;}
-#pic8 { background-image: url('images/foto8.png'); background-position: 50% 0%;}
-#pic9 { background-image: url('images/foto9.jpeg'); }
-#pic10 { background-image: url('images/foto10.png'); }
-#pic11 { background-image: url('images/foto11.png'); }
-#pic12 { background-image: url('images/foto12.png'); background-position: 50% 20%;}
-#pic13 { background-image: url('images/foto13.png'); }
-#pic14 { background-image: url('images/foto14.jpeg'); }
-#pic15 { background-image: url('images/foto15.png'); }
-#pic16 { background-image: url('images/foto16.jpg'); background-position: 50% 0%;}
+#pic1 { background-image: url('images/foto1.jpg'); }
+#pic2 { background-image: url('images/foto2.jpg'); }
+#pic3 { background-image: url('images/foto3.jpg'); }
+#pic4 { background-image: url('images/foto4.jpg'); }
+#pic5 { background-image: url('images/foto5.jpg'); }
+#pic6 { background-image: url('images/foto6.jpg'); }
+#pic7 { background-image: url('images/foto7.jpg'); }
+#pic8 { background-image: url('images/foto8.jpg'); }
+#pic9 { background-image: url('images/foto9.jpeg'); } /* Tetap .jpeg */
+#pic10 { background-image: url('images/foto10.jpg'); }
+#pic11 { background-image: url('images/foto11.jpg'); }
+#pic12 { background-image: url('images/foto12.jpg'); }
+#pic13 { background-image: url('images/foto13.jpg'); }
+#pic14 { background-image: url('images/foto14.jpeg'); } /* Tetap .jpeg */
+#pic15 { background-image: url('images/foto15.jpg'); }
+#pic16 { background-image: url('images/foto16.jpg'); }
