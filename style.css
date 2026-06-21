@@ -1,0 +1,681 @@
+    /* ===================================================
+    RESET & BASE STYLE
+    =================================================== */
+/* TAMBAHKAN INI DI BARIS PALING ATAS CSS UNTUK MANGGIL FONT */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;700&family=Quicksand:wght@500;700&display=swap');
+
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Ganti font-family lama lo pake ini 👇 */
+    font-family: 'Fredoka', 'Quicksand', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: #FFFFFF;
+    color: #1F2937;
+    overflow-x: hidden;
+}
+
+/* Helper Centering (Biar Gak Nulis Ulang Flexbox) */
+.content-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-20px);
+}
+
+.hidden-content {
+    display: none;
+}
+
+/* ===================================================
+   OVERLAY PERTANYAAN AWAL
+   =================================================== */
+.overlay-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+    z-index: 999;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.overlay-screen h2 {
+    font-size: 7vw;
+    max-width: 340px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+.btn-group {
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    background-color: #FF6B8B;
+    color: #FFFFFF;
+    border: none;
+    padding: 16px 32px;
+    font-size: 4.5vw;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(255, 107, 139, 0.3);
+    transition: transform 0.2s ease;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* ===================================================
+   MAIN LAYOUT FRAMEWORK & TYPOGRAPHY
+   =================================================== */
+.frame {
+    min-height: 100vh;
+    width: 100%;
+    max-width: 410px;
+    margin: 0 auto;
+    padding: 80px 24px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.hbd-title {
+    font-size: 16px !important; /* 👈 Ganti pake PX, terus kasih !important biar menang dari kode lain */
+    color: #FF6B8B;
+    margin-bottom: 12px;
+}
+
+.name-title {
+    font-size: 5w;
+    font-weight: 700;
+    margin-bottom: 35px;
+    line-height: 1.2;
+}
+
+.scroll-hint {
+    font-size: 4.5vw;
+    color: #9CA3AF;
+}
+
+/* ===================================================
+   KORIDOR KONTEN CINEMATIC STORY (PINK PUTIH)
+   =================================================== */
+.story-container {
+    position: relative;
+    width: 100%;
+    max-width: 410px;
+    margin: 0 auto;
+}
+
+.photo-window {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 1;
+}
+
+.photo-bg {
+    position: absolute;
+    width: calc(100% - 40px);
+    height: 65vh;
+    background-color: #FFF0F2;
+    border: 3px solid #FF6B8B;
+    border-radius: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FF6B8B;
+    font-weight: 600;
+    font-size: 18px;
+    box-shadow: 0 15px 35px rgba(255, 107, 139, 0.15);
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+}
+
+.photo-bg.active {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 2;
+}
+
+.story-scroller {
+    position: relative;
+    z-index: 3;
+    margin-top: -100vh;
+}
+
+.text-frame {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 24px;
+}
+
+.story-text-box {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 24px;
+    border-radius: 20px;
+    backdrop-filter: blur(6px);
+    border: 2px solid #FF6B8B;
+    min-height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    opacity: 0.1;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.story-text-box.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.typewriter-text {
+    font-size: 6vw;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.6;
+    color: #1F2937;
+}
+
+/* ===================================================
+   EFEK KURSOR KELAP KELIP UTK CERITA & TEKS PEMBUKA (BARU)
+   =================================================== */
+.typewriter-text::after,
+.intro-typewriter::after {
+    content: '|';
+    animation: blink 0.7s infinite;
+    color: #FF6B8B;
+    margin-left: 3px;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* ===================================================
+   CAKE SECTION & SURAT AKHIR
+   =================================================== */
+.cake-container {
+    width: 100%;
+    text-align: center;
+}
+
+.cake-instruction {
+    font-size: 5.5vw;
+    margin-bottom: 60px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.cake {
+    width: 260px;
+    height: 190px;
+    position: relative;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.top-layer, .bottom-layer {
+    background: #FFF0F2;
+    border: 4px solid #FF6B8B;
+    border-radius: 12px;
+    position: absolute;
+    width: 100%;
+}
+
+.top-layer { height: 75px; top: 45px; z-index: 2; width: 85%; left: 7.5%; }
+.bottom-layer { height: 75px; bottom: 0; z-index: 1; }
+
+.candle {
+    background: #FFB84D;
+    width: 18px;
+    height: 60px;
+    position: absolute;
+    top: -20px;
+    left: 121px;
+    z-index: 3;
+    border-radius: 4px;
+}
+
+.flame {
+    background: #FF8E7A;
+    width: 24px;
+    height: 36px;
+    position: absolute;
+    top: -54px;
+    left: 118px;
+    z-index: 4;
+    border-radius: 50% 50% 20% 20%;
+    box-shadow: 0 0 15px #FF8E7A;
+    animation: flicker 0.1s ease infinite alternate;
+}
+
+@keyframes flicker {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+
+.letter-box {
+    background: #fffdf9; /* Warna kertas agak cream hangat, anti-kaku */
+    border: 2px solid #ffb7b2; /* Border warna pastel pink gemes */
+    border-radius: 15px;
+    padding: 25px 20px;
+    max-width: 90%;
+    margin: 20px auto;
+    box-shadow: 0 8px 20px rgba(255, 183, 178, 0.2); /* Shadow halus biar efek 3D */
+    position: relative;
+    background-image: radial-gradient(#ffb7b2 10%, transparent 10%); /* Efek bintik kertas estetik */
+    background-size: 20px 20px;
+}
+
+.letter-box h2 {
+    font-size: 5vw;
+    color: #FF6B8B;
+    margin-bottom: 15px;
+}
+
+.line-break {
+    border: 0;
+    height: 1px;
+    background: #E5E7EB;
+    margin-bottom: 15px;
+}
+
+.letter-box p {
+    font-size: 1.10rem;
+    line-height: 1.6;
+    color: #4a4a4a;
+    text-align: left; /* Teks kiri biar kayak surat asli */
+    margin-bottom: 15px;
+    font-family: 'Quicksand', sans-serif; /* Font santai tapi rapi */
+}
+
+/* ===================================================
+   PHOTO DUMP GRID STYLING (FIX 13 FOTO - FRAME 2)
+   =================================================== */
+.photo-dump-section {
+    min-height: auto !important;
+    padding-bottom: 40px;
+}
+
+.dump-title {
+    font-size: 7vw;
+    color: #FF6B8B;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.dump-subtitle {
+    font-size: 4vw;
+    color: #9CA3AF;
+    margin-bottom: 40px;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Base Grid 6 Kolom biar pembagian 3 & 2 presisi tanpa celah */
+.dump-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px; /* Dibikin agak rapat biar 13 foto gak kepanjangan pas di-scroll */
+    width: 100%;
+    padding: 10px;
+}
+
+.dump-item {
+    background-color: #FFF0F2;
+    border: 2px solid #FF6B8B;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FF6B8B;
+    font-weight: 600;
+    font-size: 12px;
+    box-shadow: 0 8px 20px rgba(255, 107, 139, 0.1);
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* --- LOGIKA UKURAN SESUAI TIPE (POTRAIT & LANDSCAPE) --- */
+
+/* Tipe Potrait (Isi 3 kesamping): makan 2 slot kolom, dibikin agak tinggi menjulang */
+.dump-item.potrait {
+    grid-column: span 2;
+    height: 150px; 
+}
+
+/* Tipe Landscape (Isi 2 kesamping): makan 3 slot kolom, dibikin agak pendek melebar */
+.dump-item.landscape {
+    grid-column: span 3;
+    height: 105px;
+}
+
+/* Tipe Landscape Gede (Paling bawah): makan penuh 6 slot kolom */
+.dump-item.landscape-full {
+    grid-column: span 6;
+    height: 200px;
+    transform: rotate(0.5deg);
+}
+
+/* --- EFEK MIRING-MIRING ALAMI (ANTI KAKU) --- */
+.dump-item.tilt-left { 
+    transform: rotate(-4deg) translateY(3px); 
+}
+.dump-item.tilt-right { 
+    transform: rotate(4.5deg) translateY(-2px); 
+}
+
+/* Pas di-klik/tekan di HP, langsung lurus & nge-zoom dikit */
+.dump-item:active {
+    transform: scale(1.08) rotate(0deg) !important;
+    z-index: 10;
+    box-shadow: 0 12px 25px rgba(255, 107, 139, 0.3);
+}
+
+/* ===================================================
+   CONFETTI, BALLOON, & SURPRISE ANIMATIONS
+   =================================================== */
+.confetti-wrapper, .balloon-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.confetti-wrapper { z-index: 9999; }
+.balloon-wrapper { z-index: 9998; }
+
+.confetti-piece {
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    background-color: #FF6B8B;
+    top: -20px;
+    opacity: 0.8;
+    animation: fall 3s linear infinite;
+    will-change: transform, left; /* Akselerasi Hardware GPU */
+}
+
+@keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); left: var(--x-pos); }
+    100% { transform: translateY(105vh) rotate(720deg); left: calc(var(--x-pos) + var(--x-drift)); }
+}
+
+.pop-surprise {
+    font-size: 7.5vw !important;
+    color: #FF6B8B;
+    font-weight: 800;
+    animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.balloon {
+    position: absolute;
+    bottom: -120px;
+    width: 50px;
+    height: 65px;
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    display: flex;
+    justify-content: center;
+    opacity: 0.85;
+    animation: flyUp 5s linear forwards;
+    will-change: transform, left; /* Akselerasi Hardware GPU */
+}
+
+.balloon::after {
+    content: "";
+    position: absolute;
+    bottom: -12px;
+    width: 2px;
+    height: 12px;
+    background-color: #D1D5DB;
+}
+
+@keyframes flyUp {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); left: var(--b-left); }
+    50% { transform: translateY(-50vh) translateX(var(--b-shake)) rotate(10deg); }
+    100% { transform: translateY(-120vh) translateX(0) rotate(-10deg); left: calc(var(--b-left) + var(--b-drift)); }
+}
+
+/* ===================================================
+   FIX MODAL POP-UP FOTO GEDE + EFEK NARIK SMOOTH
+   =================================================== */
+.modal-overlay {
+    display: none; /* Awalnya sembunyi total */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9); /* Latar belakang item gelap estetik */
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Pembungkus konten foto + caption di tengah */
+/* ===================================================
+FIX MODAL POP-UP FOTO GEDE + EFEK NARIK SMOOTH
+=================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9); /* Latar belakang hitam estetik */
+    z-index: 10000;
+    display: flex; /* Tetap flex biar posisinya di tengah */
+    justify-content: center;
+    align-items: center;
+    
+    /* Trik utama: sembunyikan pake kombinasi ini biar transisi jalan */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+/* Pembungkus konten foto + caption di tengah */
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 85%;
+    
+    /* Posisi awal: dikecilkan banget dan agak ke bawah seolah siap ditarik */
+    transform: scale(0.3) translateY(100px);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); /* Efek elastis membal halus */
+}
+
+/* Pas kelas 'active' ditempel sama JS, langsung meluncur ketarik ke tengah */
+.modal-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1) translateY(0); /* Kembali ke ukuran asli membal di tengah layar */
+}
+
+#modal-img {
+    max-width: 100%;
+    max-height: 70vh;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 3px solid #FFF0F2;
+}
+
+/* Styling Caption di bawah foto pas pop-up */
+#modal-caption {
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 15px;
+    text-align: center;
+    background: rgba(255, 107, 139, 0.4);
+    padding: 8px 20px;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* ⚠️ TRIK RAHASIA: Sembunyikan teks bawaan di grid foto biar gak berantakan sebelum diklik */
+.dump-item {
+    color: transparent !important;
+    text-shadow: none !important;
+}
+/* Styling transisi tombol biar munculnya smooth */
+.hidden-btn {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.9);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.show-btn {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+
+/* Efek Kilatan Cahaya Putih Saat BOOM Meledak */
+.flash-white {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #FFFFFF;
+    z-index: 10001;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-out;
+}
+
+.flash-active {
+    opacity: 1;
+}
+
+/* Animasi Masuk Teks Utama Biar Gak Kaku */
+.hbd-title, .name-title {
+    animation: cinematicFadeIn 1.5s cubic-bezier(0.215, 0.610, 0.355, 1) forwards;
+    opacity: 0;
+}
+
+.name-title {
+    animation-delay: 0.4s; /* Nama muncul sedikit setelah tulisan HBD */
+}
+
+@keyframes cinematicFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+        filter: blur(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+/* ===================================================
+   KODE PENYELAMAT: ATUR UKURAN TANPA MERUSAK EFEK (PALING BAWAH)
+   =================================================== */
+
+/* 1. Kunci ukuran "Happy Birthday" tapi tetep boleh main animasi blur/pop up */
+h1.hbd-title, 
+.hbd-title,
+#main-web h1 {
+    font-size: 35px !important; /* 👈 Atur ukuran teks HBD di sini */
+}
+
+/* 2. Kunci ukuran "Nur Halya Thohillah" tapi tetep boleh main animasi blur/pop up */
+.name-title {
+    font-size: 30px !important; /* 👈 Atur ukuran nama Halya di sini */
+}
+
+/* 3. Jaga biar pas transisi pop-up dari JS ukurannya gak kembali melar jadi raksasa */
+.pop-surprise {
+    font-size: 26px !important; 
+    transform: scale(1) !important; /* Tetap nge-pop tapi skalanya normal, gak raksasa */
+}
+
+
+/* --- 2. JALUR PANGGIL FOTO STORY CINEMATIC (DENGAN FOLDER IMAGES) --- */
+#pic1 { background-image: url('images/foto1.jpg'); }
+#pic2 { background-image: url('images/foto2.png'); }
+#pic3 { background-image: url('images/foto3.jpg'); }
+
+/* --- 3. JALUR PANGGIL FOTO PHOTO DUMP GRID (DENGAN FOLDER IMAGES) --- */
+#pic4 { background-image: url('images/foto4.png'); }
+#pic5 { background-image: url('images/foto5.jpg'); }
+#pic6 { background-image: url('images/foto6.jpg'); }
+#pic7 { background-image: url('images/foto7.jpeg'); background-position: 50% 20%;}
+#pic8 { background-image: url('images/foto8.jpeg'); background-position: 50% 0%;}
+#pic9 { background-image: url('images/foto9.jpeg'); }
+#pic10 { background-image: url('images/foto10.jpeg'); }
+#pic11 { background-image: url('images/foto11.png'); }
+#pic12 { background-image: url('images/foto12.png'); background-position: 50% 20%;}
+#pic13 { background-image: url('images/foto13.jpg'); }
+#pic14 { background-image: url('images/foto14.jpeg'); }
+#pic15 { background-image: url('images/foto15.jpeg'); }
+#pic16 { background-image: url('images/foto16.jpg'); background-position: 50% 0%;}

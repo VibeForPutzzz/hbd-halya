@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>hbd ketuaa🥳</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <body>
+    <!-- Selipkan ini di paling atas dalam body -->
+    <div id="screen-flash" class="flash-white"></div>
+    <audio id="bg-music" src="starla_guitar.mp3" loop></audio>
+
+    <!-- 1. OVERLAY PERTANYAAN AWAL (Efek Typing + Autoload Button) -->
+    <div id="step1" class="overlay-screen">
+        <h2 class="intro-typewriter" id="text-step1" data-text="sebelum itu boleh gak naikin volume nya? udah? 🔊"></h2>
+        <!-- Tombol dikasih class hidden-btn biar gak muncul duluan -->
+        <button class="btn hidden-btn" id="btn-step1" onclick="triggerNextStep(1)">Udah!</button>
+    </div>
+
+    <div id="step2" class="overlay-screen hidden">
+        <h2 class="intro-typewriter" id="text-step2" data-text="ajak temen kamu juga dong biar lebih seru liatnya, udh ada temen atau skip aja? 👥"></h2>
+        <div class="btn-group hidden-btn" id="btn-group-step2">
+            <button class="btn" onclick="triggerNextStep(2)">Udah dong</button>
+            <button class="btn" onclick="triggerNextStep(2)">Skip aja deng</button>
+        </div>
+    </div>
+
+    <div id="step3" class="overlay-screen hidden">
+        <!-- Bagian transisi BOOM sinematik, tanpa tombol karena otomatis -->
+        <h2 class="intro-typewriter" id="text-step3" data-text="okelah udah semua ya, dann... 🏁"></h2>
+    </div>
+
+    <!-- 2. MAIN WEB CONTENT -->
+    <div class="main-content hidden-content" id="main-web">
+
+        <!-- INTRO OPENING -->
+        <section class="frame content-center">
+            <div class="intro-box">
+                <h1 class="hbd-title">🎉 Happy Birthday 🎉</h1>
+                <h2 class="name-title">🥳 Nur Halya Thohillah 🥳</h2>
+                <p class="scroll-hint">Coba deh scroll ke bawah pelan-pelan... 👇</p>
+            </div>
+        </section>
+
+        <!-- KONTEN CINEMATIC STORY (FOTO & TEKS MENGETIK) -->
+        <div class="story-container">
+            <!-- Jendela Foto Sticky (Anteng di Layar HP) -->
+            <div class="photo-window">
+                <div class="photo-bg active" id="pic1"></div>
+                <div class="photo-bg" id="pic2"></div>
+                <div class="photo-bg" id="pic3"></div>
+            </div>
+
+            <!-- Area Scroll Teks Pemicu Ketikan & Ganti Foto -->
+            <div class="story-scroller">
+                <div class="text-frame" data-photo="pic1">
+                    <div class="story-text-box">
+                        <p class="typewriter-text" data-text="Ciee ada yang ultah nih... Selamat ulang tahun ya Hal! Surprise kecil-kecilan dari gw, semoga gak kemaleman wkwk 🗿"></p>
+                    </div>
+                </div>
+
+                <div class="text-frame" data-photo="pic2">
+                    <div class="story-text-box">
+                        <p class="typewriter-text" data-text="Tapi yaa namanya juga setahun sekali, jadi ini murni gw bikin sespesial mungkin khusus buat kado ultah kamu lohh ⭐"></p>
+                    </div>
+                </div>
+
+                <div class="text-frame" data-photo="pic3">
+                    <div class="story-text-box">
+                        <p class="typewriter-text" data-text="Gak tahu deh hasilnya bakal gimana, tapi semoga lo suka ya! Nah, coba liat di bawah ada apa... 👇🎂"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INTERAKTIF KUE TIUP LILIN -->
+        <section class="frame content-center cake-section">
+            <div class="cake-container">
+                <h2 class="cake-instruction" id="cake-status">Make a wish dulu dalam hati, kalau udah siap, klik lilinnya buat ditiup! 🎂✨</h2>
+                <div class="cake" id="cake-interactive" onclick="tiupLilin()">
+                    <div class="flame" id="lilin-api"></div>
+                    <div class="candle"></div>
+                    <div class="top-layer"></div>
+                    <div class="bottom-layer"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION NEW: PHOTO DUMP GRID -->
+        <!-- SECTION NEW: PHOTO DUMP GRID (13 Foto - Sesuai Gambar Kanan) -->
+        <section class="frame photo-dump-section">
+            <h2 class="dump-title">Visualized Memory Collection ✨📸</h2>
+            <p class="dump-subtitle">Sumpah lo cakep-cakep bgt di sini wkwk 🦖(bisa di klik loh)</p>
+            
+            <div class="dump-grid">
+                <!-- Baris 1: 3 Potrait -->
+                <div class="dump-item potrait tilt-left" id="pic4">Posenya mirip stiker WA, gemes bgt wkwk 😭🤏</div>
+                <div class="dump-item potrait" id="pic5">Cihuyy kakak kita pose guys🤌</div>
+                <div class="dump-item potrait tilt-right" id="pic6">Pose andalan lu gapernah gagal cakep 🦖 </div>
+
+                <!-- Baris 2: 2 Landscape -->
+                <div class="dump-item landscape tilt-left" id="pic7">semut aja ampe bingung, ini orang apa gula sih kok manis bgt 🐜</div>
+                <div class="dump-item landscape tilt-right" id="pic8">Aihh senyum nya kyk logo amazon 📦✨</div>
+
+                <!-- Baris 3: 3 Potrait -->
+                <div class="dump-item potrait tilt-right" id="pic9">Lagi di mana tuch👀</div>
+                <div class="dump-item potrait" id="pic10">Tolong kondisikan keimutanya💤</div>
+                <div class="dump-item potrait tilt-left" id="pic11">Sumpah lo slay and manis bgt di foto ini, no debat fix 🌸💅</div>
+
+                <!-- Baris 4: 2 Landscape -->
+                <div class="dump-item landscape tilt-left" id="pic12">Senyum tipis atau tebal ini? 🫣🍯</div>
+                <div class="dump-item landscape tilt-right" id="pic13">Kalo kalem begini, adem bgt kayak ubin masjid wkwk, BECANDAA😭🙏</div>
+
+                <!-- Baris 5: 2 Landscape -->
+                <div class="dump-item landscape tilt-right" id="pic14">Satu duaa jegrek 📸</div>
+                <div class="dump-item landscape tilt-left" id="pic15">Gatau kenapa, tapi fix ini foto paling ter-favorit gw sih 😌🤍</div>
+
+                <!-- Baris Terakhir: 1 Landscape Gede -->
+                <div class="dump-item landscape-full" id="pic16">Kaget ya ahaha, disitu gw belom siap loh, tapi gapapa deh yg penting foto bareng lo ahaha 😭✨</div>
+            </div>
+        </section>
+
+        <!-- BOX SURAT AKHIR -->
+        <section class="frame content-center final-section">
+            <div class="letter-box">
+                <h2>From me For you 💌</h2>
+                <hr class="line-break">
+                <p>Sweet Happy Birthday, Halya! 🎂👑</p>
+                <p>Gak ada kata-kata puitis sih, di sini gw cuma mau ngucapin doa yang tulus buat lo. Semoga di umur yang baru ini lo selalu sehat, dilancarkan segala urusannya, dan sukses terus buat ke depannya</p>
+                <p>Makasih banyak ya udah mau berteman dan bertahan sama gw sampai sekarang, meskipun gw kadang random bgt wkwk. Kehadiran lo tuh selalu bawa energi positif buat sekitar, termasuk buat gw yahahaa🤭</p>
+                <p>Makasih ya udah mau baca web ini sampai akhir...
+                 Nah sekarang, lanjutin di WA deh. Ada sesuatu yang penting banget mau gw omongin secara personal ke lo. See ya! 👉👈</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- MODAL POP-UP UNTUK PREVIEW FOTO GEDE -->
+    <div id="photo-modal" class="modal-overlay" onclick="closePhoto()">
+    <span class="close-btn">&times;</span>
+    <div class="modal-content">
+        <img id="modal-img" src="" alt="Preview Foto">
+        <p id="modal-caption"></p> </div>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
