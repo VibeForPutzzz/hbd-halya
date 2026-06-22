@@ -171,7 +171,7 @@ function tiupLilin() {
         flame.style.display = 'none';
        
         if (status) {
-            status.innerHTML = "Nicee, Congrats Halya!🥳 scroll lagi kuy 👇";
+            status.innerHTML = "Nicee, Congrats Halya!🥳 scroll lagi yaa";
             status.classList.add('pop-surprise');
         }
        
