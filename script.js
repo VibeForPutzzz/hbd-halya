@@ -85,7 +85,7 @@ function startCinematicSequence() {
         music.play().then(() => {
             // 2. FUNGSI FADE-IN OTOMATIS
             const targetVolume = 0.25; // 👈 ATUR VOLUME DI SINI (0.25 = 25% suara, pas buat backsound)
-            const fadeSpeed = 700;     // Kecepatan transisi (semakin kecil angkanya, makin cepet fade-in nya)
+            const fadeSpeed = 800;     // Kecepatan transisi (semakin kecil angkanya, makin cepet fade-in nya)
             
             let fadeInInterval = setInterval(() => {
                 if (music.volume < targetVolume) {
